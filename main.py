@@ -15,7 +15,11 @@ class Record:
 with open("./input/403.csv", "r") as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     for row in csv_reader:
-        records.append(Record(row[0], row[1], "DOMAIN", row[2]))
+        domain = row[0].split("@")[1]
+
+
+        records.append(Record(row[0], row[1], domain, row[2]))
+
 
 for r in records:
     print(r)
