@@ -16,9 +16,12 @@ with open("./input/403.csv", "r") as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     for row in csv_reader:
         domain = row[0].split("@")[1]
+        
+        variant = domain.replace(".ev.com", "").upper()
+        print(variant)
 
 
-        records.append(Record(row[0], row[1], domain, row[2]))
+    records.append(Record(row[0], row[1], domain, row[2]))
 
 
 for r in records:
