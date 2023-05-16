@@ -1,28 +1,25 @@
 import csv
+import re
 
-records = []
+RECORDS = []
 
 class Record:
-    def __init__(self, number, occurences, domain, instances = None) -> None:
+    def __init__(self, number, occurences, variant, instances = None) -> None:
         self.number = number
         self.occurences = occurences
-        self.domain = domain
+        self.variant = variant.upper()
         self.instances = instances if instances else []
 
     def __str__(self):
-        return f"Record - Number: {self.number}, Occurences: {self.occurences}, Domain: {self.domain}, Instances: {self.instances}"
+        return f"Record - Number: {self.number}, Occurences: {self.occurences}, Variant: {self.variant}, Instances: {self.instances}"
 
 with open("./input/403.csv", "r") as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     for row in csv_reader:
-        domain = row[0].split("@")[1]
-        
-        variant = domain.replace(".ev.com", "").upper()
-        print(variant)
+        variant = row[0].split("@")[1].split(".")[0]
+        number = re.search(r"\b(\d+)\b", row[0]).group(1)
+        RECORDS.append(Record(number, row[1], variant, row[2:]))
 
 
-    records.append(Record(row[0], row[1], domain, row[2]))
-
-
-for r in records:
+for r in RECORDS:
     print(r)
