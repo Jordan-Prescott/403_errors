@@ -2,8 +2,6 @@ import csv
 import re
 
 RECORDS = []
-INSTANCE_FLAG_POINT = 1
-
 class Record:
     def __init__(self, number, occurences, variant, instances = None) -> None:
         self.number = number
@@ -20,9 +18,7 @@ with open("./input/403.csv", "r") as csv_file:
 
         variant = row[0].split("@")[1].split(".")[0]
         number = re.search(r"\b(\d+)\b", row[0]).group(1)
-        new_record = Record(number, row[1], variant, row[2:])
-
-        RECORDS.append(new_record)
+        RECORDS.append(Record(number, row[1], variant, row[2:]))
 
 for r in RECORDS:
     print(r)
