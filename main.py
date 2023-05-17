@@ -1,3 +1,5 @@
+#TODO: spit out to 403 errors, add date, project, 'not started' status
+
 import csv
 import re
 
@@ -21,5 +23,17 @@ with open("./input/403.csv", "r") as csv_file:
         RECORDS.append(Record(number, row[1], variant, row[2:]))
 
 
+
 for r in RECORDS:
-    print(r)
+    r.instances = list(filter(lambda x: x != '', r.instances))
+    print(r.instances)
+
+with open("./output/403_formatted.csv", "w", newline="") as csv_file:
+    csv_writer = csv.writer(csv_file)
+    for r in RECORDS:
+        row = ["", "", r.variant, r.number, r.occurences, "", r.instances]
+
+
+
+
+        csv_writer.writerow(row)
