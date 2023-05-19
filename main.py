@@ -2,8 +2,12 @@
 
 import csv
 import re
+from datetime import datetime
 
+TODAYS_DATE = datetime.today().strftime('%d/%m/%Y')
 RECORDS = []
+
+
 class Record:
     def __init__(self, number, occurences, variant, instances = None) -> None:
         self.number = number
@@ -31,7 +35,7 @@ for r in RECORDS:
 with open("./output/403_formatted.csv", "w", newline="") as csv_file:
     csv_writer = csv.writer(csv_file)
     for r in RECORDS:
-        row = ["", "", r.variant, r.number, r.occurences, "", r.instances]
+        row = ["", "", r.variant, r.number, r.occurences, TODAYS_DATE, r.instances, "", "Not-Started"]
 
 
 
