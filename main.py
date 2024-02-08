@@ -24,7 +24,7 @@ with open("./input/403.csv", "r") as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     for row in csv_reader:
 
-        variant = row[0].split("@")[1].split(".")[0]
+        variant = (row[0].split("@")[1]).split(".")[0]
         number = re.search(r"\b(\d+)\b", row[0]).group(1)
         project = ""
 
@@ -33,7 +33,6 @@ with open("./input/403.csv", "r") as csv_file:
                 project = site.project_name
 
         RECORDS.append(Record(project, number, row[1], variant, row[2:]))
-
 
 
 for r in RECORDS:

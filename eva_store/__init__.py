@@ -1,5 +1,5 @@
 
 __all__ = ["store"]
 
-from .store import *
+from eva_store.store import *
 
